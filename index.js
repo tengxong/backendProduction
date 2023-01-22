@@ -24,7 +24,7 @@ app.get('/:id', (req, res) => {
     var id = req.params.id;
     var params = [id]
 
-    var sql = 'SELECT * FROM user WHERE id'
+    var sql = 'SELECT * FROM user WHERE id= ?'
 
     connection.query(sql, params, (err, rows, fields) => {
         if (err) throw err
@@ -32,4 +32,18 @@ app.get('/:id', (req, res) => {
     })
 })
 
+// chapter 14. ການທົດລອງອັບເດດຂໍ້ມູນ
+app.put("/updateuser", (req, res) => {
+    var username = req.body.username;
+    var email = req.body.email;
+    var password = req.body.password;
+    var id = req.body.id;
+    var params = [username, email, password, id];
+    var sql = 'UPDATE user SET username= ?, email= ?, password= ?, WHERE id= ?';
+    connection.query(sql, params, (err, rows, fields) => {
+        if (err) throw err;
+        res.send(rows);
+    });
+
+})
 app.listen(port)
