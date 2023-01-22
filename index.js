@@ -72,4 +72,20 @@ app.post("/login", (req, res) => {
         }
     });
 })
+
+//Route Cookie
+app.post("/isLogIn", (req, res) => {
+    console.log(req.cookies);
+    if (req.cookies.login){
+        let data = {
+            status:200,
+            message:"logged in",
+        };
+        res.send(data);
+    } else {
+        res.send("no cookie");
+
+    }
+    res.send("login");
+});
 app.listen(port)
