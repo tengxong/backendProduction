@@ -46,4 +46,30 @@ app.put("/updateuser", (req, res) => {
     });
 
 })
+
+//  login page
+app.post("/login", (req, res) => {
+    var username = req.body.username;
+    var email = req.body.email;
+    var password = req.body.password;
+    var id = req.body.id;
+    var params = [username, email, password, id];
+    var sql = "SELECT id FROM user WHERE  username = ?, email = ? AND password = ?";
+    connection.query(sql, params, (err, rows, fields) => {
+        if (err) {
+            throw err;
+        } else {
+            if (rows.length > 0) {
+                res.cookie("login", rows[0].id); // Using cookie
+                let data = {
+                    status: 200,
+                    message: "success",
+                };
+                res.send(data);
+            } else {
+                res.send("faild");
+            }
+        }
+    });
+})
 app.listen(port)
