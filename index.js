@@ -81,7 +81,7 @@ app.post("/login", (req, res) => {
 })
 
 //Route Cookie
-app.post("/isLogIn", (req, res) => {
+app.post("/isLoggedIn", (req, res) => {
     console.log(req.cookies);
     if (req.cookies.login) {
         let data = {
