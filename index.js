@@ -42,11 +42,13 @@ app.get('/:id', (req, res) => {
 // chapter 14. ການທົດລອງອັບເດດຂໍ້ມູນ
 app.put("/updateuser", (req, res) => {
     var username = req.body.username;
+    let {firsname, lastname} = req.body;
     var email = req.body.email;
     var password = req.body.password;
+    var title = req.body.title;
     var id = req.body.id;
-    var params = [username, email, password, id];
-    var sql = 'UPDATE user SET username= ?, email= ?, password= ?, WHERE id= ?';
+    var params = [username,firsname,lastname,email, password, title,id];
+    var sql = 'UPDATE user SET username= ?, firsname= ?, lastname= ?,email= ?, password= ?, titil=? WHERE id= ?';
     connection.query(sql, params, (err, rows, fields) => {
         if (err) throw err;
         res.send(rows);
