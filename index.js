@@ -17,7 +17,7 @@ connection.connect()
 
 app.use(
     cors({
-        origin: "https://frond-end.vercel.app/",
+        origin: "https://frond-end.vercel.app",
         credentials: true, // ເປີດ
     })
 );
@@ -58,10 +58,8 @@ app.put("/updateuser", (req, res) => {
 
 //  login page
 app.post("/login", (req, res) => {
-    var username = req.body.username;
     var email = req.body.email;
     var password = req.body.password;
-    var id = req.body.id;
     var params = [email, password];
     var sql = "SELECT id FROM user WHERE email = ? AND password = ?";
     connection.query(sql, params, (err, rows, fields) => {
