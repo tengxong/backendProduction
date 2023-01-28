@@ -17,7 +17,7 @@ connection.connect()
 
 app.use(
     cors({
-        origin: "https://frontend-wang-web.vercel.app",
+        origin: "https://frond-end.vercel.app/",
         credentials: true, // ເປີດ
     })
 );
@@ -62,8 +62,8 @@ app.post("/login", (req, res) => {
     var email = req.body.email;
     var password = req.body.password;
     var id = req.body.id;
-    var params = [username, email, password, id];
-    var sql = "SELECT id FROM user WHERE  username = ?, email = ? AND password = ?";
+    var params = [email, password];
+    var sql = "SELECT id FROM user WHERE email = ? AND password = ?";
     connection.query(sql, params, (err, rows, fields) => {
         if (err) {
             throw err;
